@@ -1,0 +1,14 @@
+/* 1️⃣ Google font import MUST be first */
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 2️⃣ Tailwind core */
+@import "tailwindcss";
+
+/* 3️⃣ DaisyUI plugin */
+@plugin "daisyui";
+
+/* 4️⃣ Global font family */
+* {
+  font-family: "Urbanist", sans-serif;
+  font-style: normal;
+}
