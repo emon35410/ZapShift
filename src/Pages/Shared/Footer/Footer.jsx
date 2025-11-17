@@ -20,7 +20,7 @@ const Footer = () => {
                 <Logo></Logo>
 
                 {/* Tagline */}
-                <p className="text-gray-400 text-base leading-relaxed mb-10 max-w-3xl mx-auto">
+                <p className="text-secondary text-base leading-relaxed mb-10 max-w-3xl mx-auto">
                     Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.
                 </p>
 

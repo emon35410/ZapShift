@@ -1,15 +1,18 @@
 import React from 'react';
 import Logo from '../../../Component/Logo/Logo';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import "../Navbar/Navbar.css"
+import arrow from "../../../assets/Image/Frame 4.png"
+import { LuSquareArrowUpRight } from 'react-icons/lu';
 
- const Navbar = () => {
-const links = <>
-    <li><NavLink to="/services">Services</NavLink></li>
-    <li><NavLink to="/coverage">Coverage</NavLink></li>
-    <li><NavLink to="/aboutus">About Us</NavLink></li>
-    <li><NavLink to="/pricing">Pricing</NavLink></li>
-    <li><NavLink to="/bearider">Be a Rider</NavLink></li>
+
+const Navbar = () => {
+    const links = <>
+        <li><NavLink to="/services">Services</NavLink></li>
+        <li><NavLink to="/coverage">Coverage</NavLink></li>
+        <li><NavLink to="/aboutus">About Us</NavLink></li>
+        <li><NavLink to="/pricing">Pricing</NavLink></li>
+        <li><NavLink to="/bearider">Be a Rider</NavLink></li>
     </>
     return (
         <nav className="navbar rounded-sm bg-base-100 mt-5 shadow-sm">
@@ -24,19 +27,39 @@ const links = <>
                         {links}
                     </ul>
                 </div>
-                
+
                 <div className="btn btn-ghost">
                     <Logo></Logo>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                   {links}
+                    {links}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
+            <div className="navbar-end hidden md:flex space-x-2">
+                <div><Link className="btn rounded-lg text-secondary ">Sign In</Link></div>
+                <div className='flex justify-center items-center'>
+                    <Link className='btn bg-primary rounded-lg hover:bg-[#d0e29a]'>Be a Rider</Link>
+                    <img className='w-10 h-10' src={arrow} alt="" />
+                </div>
             </div>
+            <div className="navbar-end dropdown md:hidden dropdown-bottom">
+                <div tabIndex={0} role="button" className="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </div>
+                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-50 w-40 p-2 shadow-sm flex flex-col gap-2">
+                    <li>
+                        <Link className="btn w-full rounded-lg text-secondary">Sign In</Link>
+                    </li>
+                    <li className="flex justify-between items-center">
+                        <Link className="btn w-full bg-primary rounded-lg hover:bg-[#d0e29a]">Be a Rider<LuSquareArrowUpRight /></Link>
+                    </li>
+                </ul>
+            </div>
+
         </nav>
     );
 };
