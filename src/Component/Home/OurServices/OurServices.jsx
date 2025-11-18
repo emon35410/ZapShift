@@ -37,7 +37,7 @@ const OurServices = () => {
                 <p className='text-[#DADADA] text-center'>business shipments — we deliver on time, every time.</p>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-5 mx-5 md:mx-25 my-10 '>
                     {
-                        cards.map(card => <div className="border  p-6 bg-white rounded-2xl shadow hover:bg-primary hover:shadow-lg transition cursor-pointer">
+                        cards.map((card,index) => <div key={index+10} className="border  p-6 bg-white rounded-2xl shadow hover:bg-primary hover:shadow-lg transition cursor-pointer">
                             <div className='flex flex-col  justify-center items-center space-y-3'>
                                 <img  src={serviceImg} alt="" />
                             <h2 className="font-bold text-accent text-center text-lg ">{card.title}</h2>

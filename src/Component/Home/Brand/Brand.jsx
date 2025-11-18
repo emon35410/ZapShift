@@ -21,11 +21,19 @@ const Brand = () => {
                             key={index}
                             src={brand}
                             alt={`Brand ${index + 1}`}
-                            
+
                         />
                     ))}
                 </div>
             </Marquee>
+            <div className='hidden text-center md:flex my-5 text-accent'>
+                ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            </div>
+            <div className='md:hidden text-center my-5 text-accent'>
+                ------------------------------------------------
+            </div>
+
+
 
         </div>
     );
