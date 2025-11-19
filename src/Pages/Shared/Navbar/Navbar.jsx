@@ -29,7 +29,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="btn btn-ghost">
-                    <Logo></Logo>
+                    <Link to="/"><Logo></Logo></Link>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">

@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const Footer = () => {
     const links = <>
         <li><Link>Services</Link></li>
-        <li><Link>Coverage</Link></li>
+        <li><Link to="/coverage">Coverage</Link></li>
         <li><Link>About Us</Link></li>
         <li><Link>Pricing</Link></li>
         <li><Link>Blog</Link></li>

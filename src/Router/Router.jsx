@@ -3,17 +3,28 @@ import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import Loading from "../Component/Loading/Loading";
 import RootLayout from "../Layout/RootLayout";
 import Home from "../Component/Home/Home/Home";
+import Coverage from "../Pages/Coverage/Coverage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
+    // errorElement: <ErrorPage></ErrorPage>,
     hydrateFallbackElement: <Loading></Loading>,
-    children:[
+    children: [
       {
-        index:true,
-        Component:Home
+        index: true,
+        Component: Home
+      },
+      {
+        path: "/coverage",
+        loader: async () => {
+          const res = await fetch("/serviceCenter.json");
+          return res.json();
+        },
+
+        Component: Coverage
+
       }
     ]
   },
