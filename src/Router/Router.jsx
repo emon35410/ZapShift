@@ -4,6 +4,7 @@ import Loading from "../Component/Loading/Loading";
 import RootLayout from "../Layout/RootLayout";
 import Home from "../Component/Home/Home/Home";
 import Coverage from "../Pages/Coverage/Coverage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
 
         Component: Coverage
 
+      }
+      ,{
+        path:"aboutus",
+        Component: AboutUs
       }
     ]
   },
