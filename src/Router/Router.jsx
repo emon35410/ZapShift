@@ -5,6 +5,14 @@ import RootLayout from "../Layout/RootLayout";
 import Home from "../Component/Home/Home/Home";
 import Coverage from "../Pages/Coverage/Coverage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import Services from "../Pages/Services/Services";
+import Pricing from "../Pages/Pricing/Pricing";
+import BeARider from "../Pages/BeARider/BeARider";
+import Error from "../Component/Error/Error";
+import Authlayout from "../Layout/Authlayout";
+import Login from "../Pages/Auth/Login/Login";
+import Register from "../Pages/Auth/Register/Register";
+
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +38,39 @@ export const router = createBrowserRouter([
       ,{
         path:"aboutus",
         Component: AboutUs
+      },
+      {
+        path:"services",
+        Component: Services
+        
+      },
+      {
+        path:"pricing",
+        Component: Pricing
+      },
+      {
+        path:"bearider",
+        Component: BeARider
+      },
+      {
+        path:"/*",
+        Component: Error
       }
     ]
   },
+  {
+    path:"/",
+    element:<Authlayout></Authlayout>,
+    children:[
+      {
+        path:"login",
+        Component: Login
+
+      },
+      {
+        path:"register",
+        Component:Register
+      }
+    ]
+  }
 ]);

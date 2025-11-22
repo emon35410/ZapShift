@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import liveparcel from "../../../assets/Image/live-tracking.png"
 import delivertMan from "../../../assets/Image/safe-delivery.png"
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 const LIveTraking = () => {
+     useEffect(() => {
+        Aos.init({ duration: 1000, once: true });
+    }, []);
     return (
         <>
-            <div className='space-y-5 my-5'>
+            <div data-aos="slide-right" className='space-y-5 my-5'>
                 <div className="bg-white shadow-2xl gap-5 flex justify-around items-center rounded-3xl p-6 md:p-7 transition-all duration-200 hover:shadow-3xl">
                     <div>
                         <img className=' mb-2' src={liveparcel} alt="" />

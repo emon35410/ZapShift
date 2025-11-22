@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import icon from "../../../assets/Image/bookingIcon.png"
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 const HowItWorks = () => {
+
+    useEffect(() => {
+        Aos.init({ duration: 1500, once: true });
+    }, []);
     const cards = [
         {
             "title": "Booking Pick & Drop",
@@ -22,24 +28,24 @@ const HowItWorks = () => {
     ]
 
     return (
-       <div className=' mx-auto md:px-20 '>
-        <h1 className='text-4xl font-bold text-accent'>How it Works</h1>
-         <div className='grid grid-cols-1 md:grid-cols-4 items-center mb-5  gap-3'>
-            {
-                cards.map((card,index) => <div key={index+5} className="bg-white shadow-md rounded-3xl p-6 md:p-7 hover:shadow-lg transition-all duration-200">
-                    <img className='w-[47px] h-[49px] mb-2' src={icon} alt="" />
-                    <h3 className="text-xl font-semibold text-accent mb-3">
-                        {card.title}
-                    </h3>
-                    <p className="text-secondary text-sm md:text-base leading-relaxed">
-                        {card.description}
-                    </p>
-                </div>
+        <div data-aos="fade-left" className=' mx-auto md:px-20 '>
+            <h1 className='text-4xl font-bold text-accent'>How it Works</h1>
+            <div className='grid grid-cols-1 md:grid-cols-4 items-center mb-5  gap-3'>
+                {
+                    cards.map((card, index) => <div key={index + 5} className="bg-white shadow-md rounded-3xl p-6 md:p-7 hover:shadow-lg transition-all duration-200">
+                        <img className='w-[47px] h-[49px] mb-2' src={icon} alt="" />
+                        <h3 className="text-xl font-semibold text-accent mb-3">
+                            {card.title}
+                        </h3>
+                        <p className="text-secondary text-sm md:text-base leading-relaxed">
+                            {card.description}
+                        </p>
+                    </div>
 
-                )
-            }
+                    )
+                }
+            </div>
         </div>
-       </div>
     );
 };
 

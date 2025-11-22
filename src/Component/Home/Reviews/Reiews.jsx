@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import customer_top from "../../../assets/Image/customer-top.png"
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -6,12 +6,17 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 import quota from "../../../assets/Image/reviewQuote.png"
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 const Reiews = ({ reviewPromise }) => {
+     useEffect(() => {
+        Aos.init({ duration: 1000, once: true });
+    }, []);
     const reviews = use(reviewPromise);
     console.log(reviews)
     return (
-        <div className="my-15 px-4 md:px-8">
+        <div data-aos="fade-right" className="my-15 px-4 md:px-8">
             <div className="flex flex-col justify-center items-center space-y-5 text-center">
                 <img src={customer_top} alt="" className="w-32 md:w-40" />
 

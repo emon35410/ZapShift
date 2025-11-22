@@ -1,10 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import "leaflet/dist/leaflet.css"
 import { useLoaderData } from 'react-router';
 import { Search } from 'lucide-react';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 const Coverage = () => {
+     useEffect(() => {
+        Aos.init({ duration: 1000, once: true });
+    }, []);
     const serviceCenters = useLoaderData();
     const mapRef = useRef(null)
     console.log(serviceCenters);
@@ -20,7 +25,7 @@ const Coverage = () => {
         }
     }
     return (
-        <div className='bg-white shadow my-10 py-10 rounded-2xl'>
+        <div data-aos="zoom-in" className='bg-white shadow my-10 py-10 rounded-2xl'>
             <div className='w-11/12 mx-auto '>
                 <div>
                     <h1 className='text-5xl font-bold text-accent'>We are available in 64 districts</h1>
@@ -44,8 +49,8 @@ const Coverage = () => {
                 </div>
                 <div className='my-10'>
                      <h1 className='my-10 text-accent text-4xl font-bold'>We deliver almost all over Bangladesh</h1>
-                    <div className='border-2 w-full h-[600px]'>
-                        <MapContainer className='h-[600px]' ref={mapRef} center={position} zoom={7} scrollWheelZoom={false}>
+                    <div className=' w-full h-[600px]'>
+                        <MapContainer className='h-[600px] ' ref={mapRef} center={position} zoom={7} scrollWheelZoom={false}>
                             <TileLayer
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

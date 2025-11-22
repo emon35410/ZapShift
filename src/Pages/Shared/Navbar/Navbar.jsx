@@ -4,9 +4,18 @@ import { Link, NavLink } from 'react-router';
 import "../Navbar/Navbar.css"
 import arrow from "../../../assets/Image/Frame 4.png"
 import { LuSquareArrowUpRight } from 'react-icons/lu';
+import useAuth from '../../../Hooks/useAuth';
 
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error)
+            })
+    }
     const links = <>
         <li><NavLink to="/services">Services</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
@@ -38,7 +47,16 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end hidden md:flex space-x-2">
-                <div><Link className="btn rounded-lg text-secondary ">Sign In</Link></div>
+                <div>
+                    {
+                        user ?
+                            <button onClick={handleLogOut} className="btn w-full rounded-lg text-secondary">
+                                Sign Out
+                            </button>
+                            :
+                            <Link to="/login" className="btn w-full rounded-lg text-secondary">Sign In</Link>
+                    }
+                </div>
                 <div className='flex justify-center items-center'>
                     <Link className='btn bg-primary rounded-lg hover:bg-[#d0e29a]'>Be a Rider</Link>
                     <img className='w-10 h-10' src={arrow} alt="" />
@@ -52,7 +70,13 @@ const Navbar = () => {
                 </div>
                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-50 w-40 p-2 shadow-sm flex flex-col gap-2">
                     <li>
-                        <Link className="btn w-full rounded-lg text-secondary">Sign In</Link>
+                        {
+                            user ? <button onClick={handleLogOut} className="btn w-full rounded-lg text-secondary">
+                                Sign Out
+                            </button>
+                                :
+                                <Link to="/login" className="btn w-full rounded-lg text-secondary">Sign In</Link>
+                        }
                     </li>
                     <li className="flex justify-between items-center">
                         <Link className="btn w-full bg-primary rounded-lg hover:bg-[#d0e29a]">Be a Rider<LuSquareArrowUpRight /></Link>

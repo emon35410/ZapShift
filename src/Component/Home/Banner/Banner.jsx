@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from 'react-router';
 import { Carousel } from 'react-responsive-carousel';
 import banner1 from "../../../assets/banner/banner1.png"
 import banner2 from "../../../assets/banner/banner2.png"
 import banner3 from "../../../assets/banner/banner3.png"
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 const Banner = () => {
+    useEffect(() => {
+    Aos.init({ duration: 1000, once: true }); 
+}, []);
+
     return (
-        <div className="bg-white shadow-lg rounded-3xl m-5 md:m-10 p-3  md:p-6">
+        <div data-aos="fade-down" className="bg-white shadow-lg rounded-3xl m-5 md:m-10 p-3  md:p-6">
             <Carousel autoPlay={true} infiniteLoop={true} showStatus={false} showThumbs={false}>
                 <div className='relative'>
                     <img  src={banner1}

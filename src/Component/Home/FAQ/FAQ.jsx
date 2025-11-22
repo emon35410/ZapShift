@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 const FAQ = () => {
     const [openIndex, setOpenIndex] = useState(0);
+     useEffect(() => {
+        Aos.init({ duration: 1000, once: true });
+    }, []);
 
     const faqs = [
         {
@@ -37,7 +42,7 @@ const FAQ = () => {
     };
 
     return (
-        <div className="min-h-screen  py-12 px-4">
+        <div data-aos="zoom-in" className="min-h-screen  py-12 px-4">
             <div className="max-w-4xl mx-auto">
 
                 {/* Header */}

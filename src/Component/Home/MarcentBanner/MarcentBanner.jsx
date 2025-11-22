@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import marcent from "../../../assets/Image/be-a-merchant-bg.png"
 import loca from "../../../assets/Image/location-merchant.png"
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 
 const MarcentBanner = () => {
+    useEffect(() => {
+        Aos.init({ duration: 2000, once: true });
+    }, []);
     return (
-        <div className="bg-accent shadow-xl rounded-2xl my-10 px-5 pb-3 md:px-10 md:pb-10 text-white">
+        <div data-aos="flip-left" className="bg-accent shadow-xl rounded-2xl my-10 px-5 pb-3 md:px-10 md:pb-10 text-white">
 
             {/* Top Banner Image */}
             <div className="flex justify-center mb-6">
