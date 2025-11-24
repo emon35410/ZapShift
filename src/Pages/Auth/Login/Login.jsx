@@ -1,17 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../Hooks/useAuth';
 import GoogleLogin from '../SocialLogin/GoogleLogin';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { signInUser } = useAuth();
+    const navigate = useNavigate()
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = (data) => {
         signInUser(data.email, data.password)
             .then(result => {
                 console.log("Login Successful:", result.user);
+                 navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error.message);
@@ -46,7 +51,7 @@ const Login = () => {
                         <p className="text-red-500 font-bold">Password is required</p>
                     )}
                     <p className="text-sm  ">
-                        <Link to="/forgot-password" className="text-[#71717A] hover:underline">
+                        <Link to="/forgetpassword" className="text-[#71717A] hover:underline">
                             Forgot Password?
                         </Link>
                     </p>
@@ -58,9 +63,9 @@ const Login = () => {
                     </button>
 
                     <div className="mt-3">
-                        <p className="text-sm">
+                        <p className="text-sm text-[#71717A]">
                             Don't have an account?{" "}
-                            <Link to="/register" className="link link-hover text-[#8FA748]">
+                            <Link to="/register" state={{ from: location.state?.from || null }} className="link link-hover text-[#8FA748]">
                                 Register
                             </Link>
                         </p>
@@ -70,7 +75,7 @@ const Login = () => {
 
             <p className="text-secondary ml-30">or</p>
 
-           <GoogleLogin></GoogleLogin>
+            <GoogleLogin></GoogleLogin>
         </div>
     );
 };

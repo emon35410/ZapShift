@@ -12,6 +12,9 @@ import Error from "../Component/Error/Error";
 import Authlayout from "../Layout/Authlayout";
 import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
+import PrivateRoutes from "./PrivateRoutes";
+import ForgetPassword from "../Pages/Auth/ForgetPassword/ForgetPassword";
+import SendParcel from "../Pages/SendParcel/SendParcel";
 
 
 export const router = createBrowserRouter([
@@ -45,12 +48,20 @@ export const router = createBrowserRouter([
         
       },
       {
+        path:"sendaparcel",
+        element:<PrivateRoutes>
+          <SendParcel></SendParcel>
+        </PrivateRoutes>
+      },
+      {
         path:"pricing",
         Component: Pricing
       },
       {
         path:"bearider",
-        Component: BeARider
+        element:<PrivateRoutes>
+          <BeARider></BeARider>
+        </PrivateRoutes>
       },
       {
         path:"/*",
@@ -70,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path:"register",
         Component:Register
+      },
+      {
+        path:"forgetpassword",
+        Component:ForgetPassword
       }
     ]
   }

@@ -17,7 +17,9 @@ const Footer = () => {
             <div className="max-w-6xl mx-auto text-center">
                 {/* Logo */}
                 
-                <Logo></Logo>
+                <div className='flex justify-center items-center'>
+                    <Logo></Logo>
+                </div>
 
                 {/* Tagline */}
                 <p className="text-secondary text-base leading-relaxed mb-10 max-w-3xl mx-auto">

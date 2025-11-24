@@ -1,25 +1,63 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../Hooks/useAuth';
 import GoogleLogin from '../SocialLogin/GoogleLogin';
+import axios from 'axios';
+import { sendEmailVerification } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    const {registerUser} = useAuth();
+    const { registerUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate()
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const password = watch("password");
 
 
     const hanldleRegister = (data) => {
         console.log("after registration", data)
-        registerUser(data.email,data.password)
-        .then(result=>{
-            console.log(result.user)
-        })
-        .catch(error=>{
-            console.log(error)
-        })
+        const profileImg = data.photo[0];
+        registerUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+
+                sendEmailVerification(result.user)
+                    .then(() => {
+                        toast.success("Verification email sent! Please check your inbox.");
+                        navigate(from, { replace: true });
+                    })
+                    .catch(err => console.log("Error sending verification email:", err));
+
+
+                // store the image and get the photo url
+                const formData = new FormData();
+                formData.append('image', profileImg)
+                // store image and get url
+                const image_API_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_PHOTO_HOST_KEY}`
+                axios.post(image_API_url, formData)
+                    .then(res => {
+                        console.log("After Getting Image", res.data.data.url)
+                        // update user Profile
+                        const userProfile = {
+                            displayName: data.name,
+                            photoURL: res.data.data.url
+                        }
+                        updateUserProfile(userProfile)
+                            .then(result => {
+                                console.log("User Updated done", result)
+
+                            })
+                            .catch(error => console.log(error))
+                    })
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -28,6 +66,9 @@ const Register = () => {
             <p className='my-2'>Register with ZapShift</p>
             <form onSubmit={handleSubmit(hanldleRegister)}>
                 <fieldset className="fieldset">
+                    <label className="label">Photo</label>
+                    <input type="file" {...register("photo", { required: true })} className="file-input file-input-secondary" placeholder='Your Photo' />
+                    {errors.file?.type === 'required' && <p className='text-red-500 font-bold'>Image is required</p>}
                     <label className="label">Full Name</label>
                     <input type="text" {...register("name", { required: true })} className="input" placeholder="Full Name" />
                     {errors.name?.type === 'required' && <p className='text-red-500 font-bold'>Name is required</p>}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../Component/Logo/Logo';
-import { Outlet } from 'react-router';
+import { Link, Outlet } from 'react-router';
 import authImg from "../assets/Image/authImage.png"
 
 const Authlayout = () => {
@@ -8,7 +8,8 @@ const Authlayout = () => {
         <div className="w-full h-screen flex flex-col md:flex-row">
             
             <div className="flex-1 ml-20 my-3 md:overflow-auto">
-                <Logo />
+                <Link to="/" className='btn btn-ghost my-5'> <Logo /></Link>
+               
                 <div className="md:ml-15">
                     <Outlet />
                 </div>

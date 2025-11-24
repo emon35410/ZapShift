@@ -20,6 +20,7 @@ const Navbar = () => {
         <li><NavLink to="/services">Services</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
         <li><NavLink to="/aboutus">About Us</NavLink></li>
+        <li><NavLink to="/sendaparcel">Send Parcel</NavLink></li>
         <li><NavLink to="/pricing">Pricing</NavLink></li>
         <li><NavLink to="/bearider">Be a Rider</NavLink></li>
     </>
@@ -58,7 +59,7 @@ const Navbar = () => {
                     }
                 </div>
                 <div className='flex justify-center items-center'>
-                    <Link className='btn bg-primary rounded-lg hover:bg-[#d0e29a]'>Be a Rider</Link>
+                    <Link  to={user ? "/bearider" : "/login"} className='btn bg-primary rounded-lg hover:bg-[#d0e29a]'>Be a Rider</Link>
                     <img className='w-10 h-10' src={arrow} alt="" />
                 </div>
             </div>
@@ -74,13 +75,20 @@ const Navbar = () => {
                             user ? <button onClick={handleLogOut} className="btn w-full rounded-lg text-secondary">
                                 Sign Out
                             </button>
+
                                 :
                                 <Link to="/login" className="btn w-full rounded-lg text-secondary">Sign In</Link>
                         }
                     </li>
                     <li className="flex justify-between items-center">
-                        <Link className="btn w-full bg-primary rounded-lg hover:bg-[#d0e29a]">Be a Rider<LuSquareArrowUpRight /></Link>
+                        <Link
+                            to={user ? "/bearider" : "/login"}
+                            className="btn w-full bg-primary rounded-lg hover:bg-[#d0e29a]"
+                        >
+                            Be a Rider <LuSquareArrowUpRight />
+                        </Link>
                     </li>
+
                 </ul>
             </div>
 

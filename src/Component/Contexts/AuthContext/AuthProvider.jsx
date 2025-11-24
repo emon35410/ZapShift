@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebase.init';
 import { Commet } from 'react-loading-indicators';
 import Loading from '../../Loading/Loading';
@@ -29,6 +29,13 @@ const AuthProvider = ({children}) => {
         setLoading(true)
         return signOut(auth)
     }
+    // update Profile
+    const updateUserProfile = (profileInfo) => {
+        if (auth.currentUser) {
+            return updateProfile(auth.currentUser, profileInfo);
+        }
+        return Promise.reject("No user is currently logged in");
+    };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -47,7 +54,8 @@ const AuthProvider = ({children}) => {
         registerUser,
         signInUser,
         signInWithGoogle,
-        logOut
+        logOut,
+        updateUserProfile
     }
       if (loading) {
         
