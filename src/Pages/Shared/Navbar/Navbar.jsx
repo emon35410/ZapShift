@@ -23,6 +23,12 @@ const Navbar = () => {
         <li><NavLink to="/sendaparcel">Send Parcel</NavLink></li>
         <li><NavLink to="/pricing">Pricing</NavLink></li>
         <li><NavLink to="/bearider">Be a Rider</NavLink></li>
+        {
+            user ? (
+                <li><NavLink to="/dashboard/myparcels">My Parcels</NavLink></li>
+            ) : null
+        }
+
     </>
     return (
         <nav className="navbar rounded-sm bg-base-100 mt-5 shadow-sm">
@@ -59,7 +65,7 @@ const Navbar = () => {
                     }
                 </div>
                 <div className='flex justify-center items-center'>
-                    <Link  to={user ? "/bearider" : "/login"} className='btn bg-primary rounded-lg hover:bg-[#d0e29a]'>Be a Rider</Link>
+                    <Link to={user ? "/bearider" : "/login"} className='btn bg-primary rounded-lg hover:bg-[#d0e29a]'>Be a Rider</Link>
                     <img className='w-10 h-10' src={arrow} alt="" />
                 </div>
             </div>
